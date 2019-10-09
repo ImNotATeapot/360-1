@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/Users/Pearl/Desktop/code/task2/SimpleFeedForwardNetwork.cpp
+/mnt/d/Users/Peth/Documents/GitHub/360-1/code/task2/SimpleFeedForwardNetwork.cpp
 SimpleFeedForwardNetwork.h
-/Users/Pearl/Desktop/code/task2/SimpleFeedForwardNetwork.h
+/mnt/d/Users/Peth/Documents/GitHub/360-1/code/task2/SimpleFeedForwardNetwork.h
 iostream
 -
 random
@@ -16,17 +16,17 @@ random
 iomanip
 -
 
-/Users/Pearl/Desktop/code/task2/SimpleFeedForwardNetwork.h
+/mnt/d/Users/Peth/Documents/GitHub/360-1/code/task2/SimpleFeedForwardNetwork.h
 math.h
 -
 vector
 -
 
-/Users/Pearl/Desktop/code/task2/main.cpp
+/mnt/d/Users/Peth/Documents/GitHub/360-1/code/task2/main.cpp
 vector
 -
 iostream
 -
 SimpleFeedForwardNetwork.h
-/Users/Pearl/Desktop/code/task2/SimpleFeedForwardNetwork.h
+/mnt/d/Users/Peth/Documents/GitHub/360-1/code/task2/SimpleFeedForwardNetwork.h
 

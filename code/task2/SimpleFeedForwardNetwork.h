@@ -9,8 +9,8 @@ class SimpleFeedForwardNetwork
 public:
 	void initialize(int seed);
 
-	void train(const vector< vector< double > >& x,
-		const vector< vector<double> >& y, size_t numEpochs);
+	void train(const vector< vector< int > >& x,
+		const vector< vector<int> >& y, size_t numEpochs);
 
 	SimpleFeedForwardNetwork(double alpha, size_t hiddenLayerSize, size_t inputLayerSize) :
 		alpha(alpha), hiddenLayerSize(hiddenLayerSize), inputLayerSize(inputLayerSize) {}

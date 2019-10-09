@@ -23,7 +23,7 @@ void SimpleFeedForwardNetwork::initialize(int seed)
 	}
 }
 
-void SimpleFeedForwardNetwork::train(const vector< vector< double > >& x,const vector< vector<double> >& y, size_t numEpochs) {
+void SimpleFeedForwardNetwork::train(const vector< vector< int > >& x,const vector< vector<int> >& y, size_t numEpochs) {
 	size_t trainingexamples = x.size();
 
 

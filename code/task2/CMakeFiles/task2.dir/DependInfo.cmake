@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/Pearl/Desktop/code/task2/SimpleFeedForwardNetwork.cpp" "/Users/Pearl/Desktop/code/task2/CMakeFiles/task2.dir/SimpleFeedForwardNetwork.cpp.o"
-  "/Users/Pearl/Desktop/code/task2/main.cpp" "/Users/Pearl/Desktop/code/task2/CMakeFiles/task2.dir/main.cpp.o"
+  "/mnt/d/Users/Peth/Documents/GitHub/360-1/code/task2/SimpleFeedForwardNetwork.cpp" "/mnt/d/Users/Peth/Documents/GitHub/360-1/code/task2/CMakeFiles/task2.dir/SimpleFeedForwardNetwork.cpp.o"
+  "/mnt/d/Users/Peth/Documents/GitHub/360-1/code/task2/main.cpp" "/mnt/d/Users/Peth/Documents/GitHub/360-1/code/task2/CMakeFiles/task2.dir/main.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "Clang")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
