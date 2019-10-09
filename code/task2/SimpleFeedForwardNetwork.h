@@ -16,7 +16,7 @@ public:
 		alpha(alpha), hiddenLayerSize(hiddenLayerSize), inputLayerSize(inputLayerSize), outputLayerSize(outputLayerSize), numLayers(numLayers) {}
 
 private:
-	vector< vector< double > > hiddenLayerWeights; // [from][to]
+	vector< vector< vector< double > > > hiddenLayerWeights; // [from][to]
 	vector< vector< double > > outputLayerWeights;
 
 	double alpha;
