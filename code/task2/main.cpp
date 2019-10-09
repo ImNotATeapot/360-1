@@ -11,7 +11,9 @@ int main()
 	double alpha = 15;   // learning rate
 	size_t inputLayerSize = 2;
 	size_t hiddenLayerSize = 8;
-	size_t numEpochs = 10000;
+	size_t numEpochs = 5000;
+	size_t outputLayerSize = 2;
+	size_t numLayers = 1;
 
 	int seed = 0; // random seed for the network initialization
 
@@ -39,7 +41,7 @@ int main()
 	vector< vector< int > > y{ {1,0}, {0,1}, {0,1}, {1,0} };
 
 
-	SimpleFeedForwardNetwork nn(alpha, hiddenLayerSize, inputLayerSize);
+	SimpleFeedForwardNetwork nn(alpha, hiddenLayerSize, inputLayerSize, outputLayerSize, numLayers);
 	nn.initialize(seed);
 	nn.train(x, y, numEpochs);
 	return 0;

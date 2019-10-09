@@ -12,8 +12,8 @@ public:
 	void train(const vector< vector< int > >& x,
 		const vector< vector<int> >& y, size_t numEpochs);
 
-	SimpleFeedForwardNetwork(double alpha, size_t hiddenLayerSize, size_t inputLayerSize) :
-		alpha(alpha), hiddenLayerSize(hiddenLayerSize), inputLayerSize(inputLayerSize) {}
+	SimpleFeedForwardNetwork(double alpha, size_t hiddenLayerSize, size_t inputLayerSize, size_t outputLayerSize, size_t numLayers) :
+		alpha(alpha), hiddenLayerSize(hiddenLayerSize), inputLayerSize(inputLayerSize), outputLayerSize(outputLayerSize), numLayers(numLayers) {}
 
 private:
 	vector< vector< double > > hiddenLayerWeights; // [from][to]
@@ -22,6 +22,8 @@ private:
 	double alpha;
 	size_t hiddenLayerSize;
 	size_t inputLayerSize;
+	size_t outputLayerSize;
+	size_t numLayers;
 
 
 	inline double g(double x) {return 1.0 / (1.0 + exp(-x)); }
