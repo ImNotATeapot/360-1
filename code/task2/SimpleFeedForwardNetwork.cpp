@@ -14,10 +14,10 @@ void SimpleFeedForwardNetwork::initialize(int seed)
 		}
 	}
 
-	outputLayerWeights.resize(2);
-	for (size_t i = 0; i < outputLayerWeights.size(); i++) {
-		outputLayerWeights[i].resize(hiddenLayerSize);
-		for (size_t j = 0; j < hiddenLayerSize; j++){
+	outputLayerWeights.resize(hiddenLayerSize);
+	for (size_t i = 0; i < hiddenLayerSize; i++) {
+		outputLayerWeights[i].resize(2);
+		for (size_t j = 0; j < 2; j++){
 			outputLayerWeights[i][j] = (rand() % 100 + 1) * 1.0 / 100; 	// This network cannot learn if the initial weights are set to zero.
 		}
 	}
@@ -49,22 +49,26 @@ void SimpleFeedForwardNetwork::train(const vector< vector< int > >& x,const vect
 				activationHidden[hiddenNode] = g(inputToHidden);
 			}
 
-			// one output node.
-			double inputAtOutput1 = 0;
-			double inputAtOutput2 = 0;
-			for (size_t hiddenNode = 0; hiddenNode < hiddenLayerSize; hiddenNode++) {
-				inputAtOutput1 += outputLayerWeights[0][hiddenNode] * activationHidden[hiddenNode];
-				inputAtOutput2 += outputLayerWeights[1][hiddenNode] * activationHidden[hiddenNode];
+			// INPUT AT OUTPUT = SUM(WEIGHTS^ij * ACTIVATION^i)
+			vector<double> inputAtOutput(2);
+			for (size_t outputNode = 0; outputNode < 2; outputNode++) {
+				for (size_t hiddenNode = 0; hiddenNode < hiddenLayerSize; hiddenNode++) {
+					inputAtOutput[outputNode] += outputLayerWeights[hiddenNode][outputNode] * activationHidden[hiddenNode];
+				}
 			}
-			double activationOutput1 = g(inputAtOutput1);
-			double activationOutput2 = g(inputAtOutput2);
-			cout << "Output: [" << std::setprecision(2) << activationOutput1 << ", " << std::setprecision(2) << activationOutput2 << "]";
+			// ACTIVATION OUTPUT = G(INPUT AT OUTPUT)
+			vector<double> activationOutput(2);
+			for (size_t outputNode = 0; outputNode < 2; outputNode++) {
+					activationOutput[outputNode] = g(inputAtOutput[outputNode]);
+				}
+
+			cout << "Output: [" << std::setprecision(2) << activationOutput[0] << ", " << std::setprecision(2) << activationOutput[1] << "]";
 			cout << "Expected: [" << std::setprecision(2) << y[example][0] << ", " << std::setprecision(2) << y[example][1] << "]";
 
 			// calculating errors
-			double errorOfOutputNode1 = gprime(activationOutput1) * (y[example][0] - activationOutput1);
-			double errorOfOutputNode2 = gprime(activationOutput2) * (y[example][1] - activationOutput2);
-			loss += pow((y[example][0] - activationOutput1),2) + pow((y[example][1] - activationOutput2), 2);
+			double errorOfOutputNode1 = gprime(activationOutput[0]) * (y[example][0] - activationOutput[0]);
+			double errorOfOutputNode2 = gprime(activationOutput[1]) * (y[example][1] - activationOutput[1]);
+			loss += pow((y[example][0] - activationOutput[0]),2) + pow((y[example][1] - activationOutput[1]), 2);
 			// double errorOfOutputNodes = (errorOfOutputNode1+errorOfOutputNode2);
 			cout << endl;// << "Loss: " << loss << endl;
 
@@ -73,16 +77,16 @@ void SimpleFeedForwardNetwork::train(const vector< vector< int > >& x,const vect
 			vector< double > errorOfHiddenNode(hiddenLayerSize);
 			for (size_t hiddenNode = 0; hiddenNode < hiddenLayerSize; hiddenNode++)
 			{
-				errorOfHiddenNode[hiddenNode] = outputLayerWeights[0][hiddenNode] * errorOfOutputNode1;
-				errorOfHiddenNode[hiddenNode] += outputLayerWeights[1][hiddenNode] * errorOfOutputNode2;
+				errorOfHiddenNode[hiddenNode] = outputLayerWeights[hiddenNode][0] * errorOfOutputNode1;
+				errorOfHiddenNode[hiddenNode] += outputLayerWeights[hiddenNode][1] * errorOfOutputNode2;
 				errorOfHiddenNode[hiddenNode] *= gprime(activationHidden[hiddenNode]);
 			}
 
 			//adjusting weights
 			//adjusting weights at output layer
 			for (size_t hiddenNode = 0; hiddenNode < hiddenLayerSize; hiddenNode++) {
-				outputLayerWeights[0][hiddenNode] += alpha * activationHidden[hiddenNode] * errorOfOutputNode1;
-				outputLayerWeights[1][hiddenNode] += alpha * activationHidden[hiddenNode] * errorOfOutputNode2;
+				outputLayerWeights[hiddenNode][0] += alpha * activationHidden[hiddenNode] * errorOfOutputNode1;
+				outputLayerWeights[hiddenNode][1] += alpha * activationHidden[hiddenNode] * errorOfOutputNode2;
 			}
 
 			// Adjusting weights at hidden layer.
